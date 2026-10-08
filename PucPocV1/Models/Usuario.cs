@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using PucPocV1.Enums;
 
 namespace PucPocV1.Models
 {
@@ -9,11 +10,8 @@ namespace PucPocV1.Models
         // ID USUÁRIO (CHAVE PRIMARIA)
         [Key]
         public int ID { get; set; }
-        // ID NIVEL DE ACESSO
-        public int ID_Nivel_Acesso { get; set; }
-        // CHAVE ESTRANGEIRA REFERENTE AO NIVEL DE ACESSO
-        [ForeignKey("ID_Nivel_Acesso")]
-        public NivelAcesso NivelAcesso { get; set; } = null!;
+        // NIVEL DE ACESSO
+        public PerfilEnum NivelAcesso { get; set; }
         // NOME
         [Required(ErrorMessage = "O nome completo é obrigatório.")]
         [StringLength(100)]
@@ -46,14 +44,5 @@ namespace PucPocV1.Models
         public DateTime Criacao { get; set; }
 
 
-    }
-
-    // TABELA NIVEL ACESSO
-    [Table("NivelAcesso")]
-    public class NivelAcesso
-    {
-        [Key]
-        public int ID { get; set; }
-        public string Descricao { get; set; } = string.Empty; // COMEÇA VAZIO
     }
 }

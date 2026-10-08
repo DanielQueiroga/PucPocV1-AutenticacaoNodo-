@@ -1,10 +1,21 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PucPocV1.Data;
+using PucPocV1.Enums;
+using PucPocV1.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// CONFIGURAR AUTENTICACAO POR COOKIE
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Authenticate/Login";
+    });
 
 // BUILDER APPDBCONTEXT E CONFIGURAR O SQL SERVER
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,7 +34,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+// QUEM È O USUARIO? (IDENTIDADE)
+app.UseAuthentication();
+// ELE PODE ACESSAR ISSO? (AUTORIZAÇÂO)
 app.UseAuthorization();
 
 app.MapStaticAssets();
