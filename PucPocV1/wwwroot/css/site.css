@@ -29,3 +29,62 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+* {
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F0F0F0;
+}
+
+
+/* =========================
+           HEADER
+========================= */
+
+
+.nodo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-bottom: solid 2px #BBBBBB;
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+.direita {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+    .direita p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+
+#btnEntrar {
+    background-color: #FFFFFF;
+    padding: 5px;
+    cursor: pointer;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #333333;
+}
+
+
+    #btnEntrar:hover {
+        background-color: #333333;
+        color: #FFFFFF;
+    }

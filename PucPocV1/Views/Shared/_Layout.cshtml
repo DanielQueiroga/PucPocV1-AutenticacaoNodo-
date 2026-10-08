@@ -10,26 +10,40 @@
     <link rel="stylesheet" href="~/PucPocV1.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PucPocV1</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class="nodo-header">
+
+        <h1>Nodo</h1>
+
+        <div class="direita">
+
+            <p>Mentores</p>
+
+            <p>Fórum</p>
+
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="12"
+                     height="12"
+                     fill="currentColor"
+                     class="bi bi-bell-fill"
+                     viewBox="0 0 16 16">
+
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                </svg>
+
+                Notificação
+            </p>
+
+            <p>Dashboard</p>
+
+            <a id="btnEntrar"
+               asp-controller="Authenticate"
+               asp-action="Login">
+                Entrar
+            </a>
+
+        </div>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">

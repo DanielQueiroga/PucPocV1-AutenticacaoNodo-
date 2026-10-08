@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// REFERENCIAS PARA AUTENTICAÇÂO
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+
+using Microsoft.AspNetCore.Mvc;
 using PucPocV1.ViewModels;
 using PucPocV1.Data;
 using PucPocV1.Models;
 using Microsoft.AspNetCore.Identity;
+
+
 
 namespace PucPocV1.Controllers
 {
@@ -80,7 +87,7 @@ namespace PucPocV1.Controllers
 
         // POST - RECEBE OS DADOS DA TELA DE LOGIN
         [HttpPost]
-        public IActionResult Login(LoginViewModel login)
+        public async Task<IActionResult> Login(LoginViewModel login)
         {
             // CONFERE SE OS CAMPOS ESTÃO VALIDOS
             if (!ModelState.IsValid)
@@ -116,9 +123,28 @@ namespace PucPocV1.Controllers
                 return View(login);
             }
 
-            ViewBag.Mensagem = "Lógin válido! ✔️";
+            // INFORMAÇÕES GUARDADAS APOS O LOGIN
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, usuario.ID.ToString()),
+                new Claim(ClaimTypes.Name, usuario.Nome),
+                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim(ClaimTypes.Role, usuario.NivelAcesso.ToString())
+            };
 
-            return View(login);
+            //CRIAR A IDENTIDADE DO USUARIO
+            var identidade = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // REPRESENTA O USUARIO AUTENTICADO
+            var usuarioLogado = new ClaimsPrincipal(identidade);
+
+            // LOGIN E CRIAR O COOKIE DE AUTENTICAçÂO
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme, usuarioLogado);
+
+            return RedirectToAction("Index", "Home");
         }
 
     }
