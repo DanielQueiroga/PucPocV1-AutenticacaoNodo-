@@ -73,7 +73,7 @@ namespace PucPocV1.Controllers
             _context.SaveChanges();
 
             ViewBag.Mensagem = "Cadastro realizado com Sucesso😁!";
-            return View();
+            return RedirectToAction("Login", "Authenticate");
         }
         //======================================= FIM TELA CADASTRO ========================================//
 
