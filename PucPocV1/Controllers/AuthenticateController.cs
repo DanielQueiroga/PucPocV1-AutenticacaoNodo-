@@ -147,5 +147,27 @@ namespace PucPocV1.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // GET: ABRE A TELA DE CADASTRO DO MENTORADO
+        public IActionResult RegisterMentorado()
+        {
+            return View();
+        }
+
+
+        // GET: ABRE A TELA DE CADASTRO MENTOR
+
+        public IActionResult RegistrarMentor()
+        {
+
+            //Colocou com os valores em AreasConhecimento em forma de lista
+            ViewBag.AreasConhecimento = _context.AreasConhecimento.ToList();
+            //Colocou com os valores em Tecnologias em forma de lista
+            ViewBag.Tecnologias = _context.Tecnologias.ToList();
+
+            return View();
+        }
+
+        
+
     }
 }

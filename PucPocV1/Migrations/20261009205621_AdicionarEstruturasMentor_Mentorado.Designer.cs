@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PucPocV1.Data;
 
@@ -11,9 +12,11 @@ using PucPocV1.Data;
 namespace PucPocV1.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261009205621_AdicionarEstruturasMentor_Mentorado")]
+    partial class AdicionarEstruturasMentor_Mentorado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,33 +41,6 @@ namespace PucPocV1.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("AreaConhecimento");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Nome = "Desenvolvimento Web"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Nome = "Banco de Dados"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Nome = "Desenvolvimento Mobile"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Nome = "Inteligência Artificial"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Nome = "Segurança da Informação"
-                        });
                 });
 
             modelBuilder.Entity("PucPocV1.Models.Mentor", b =>
@@ -165,43 +141,6 @@ namespace PucPocV1.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Tecnologia");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Nome = "C#"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Nome = "Java"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Nome = "JavaScript"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Nome = "Python"
-                        },
-                        new
-                        {
-                            ID = 5,
-                            Nome = "SQL Server"
-                        },
-                        new
-                        {
-                            ID = 6,
-                            Nome = "ASP.NET Core"
-                        },
-                        new
-                        {
-                            ID = 7,
-                            Nome = "React"
-                        });
                 });
 
             modelBuilder.Entity("PucPocV1.Models.Usuario", b =>

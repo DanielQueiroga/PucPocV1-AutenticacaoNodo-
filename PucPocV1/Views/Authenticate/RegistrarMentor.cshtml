@@ -1,0 +1,110 @@
+﻿@model PucPocV1.ViewModels.RegistrarMentorViewModel
+@using PucPocV1.Models
+
+@{
+    ViewData["Title"] = "Cadastro de Mentor";
+    //Varias recebe viewBag AreasConhecimento como Lista da Tabela de AreaConhecimento
+    var areas = ViewBag.AreasConhecimento as List<AreaConhecimento>;
+    //IDEM o de cima
+    var tecnologias = ViewBag.Tecnologias as List<Tecnologia>;
+}
+
+<h1>Cadastro de Mentor</h1>
+
+<form asp-controller="Authenticate"
+      asp-action="RegistrarMentor"
+      method="post">
+    
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <label asp-for="Nome">Nome completo</label>
+        <input asp-for="Nome" />
+        <span asp-validation-for="Nome"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div>
+        <label asp-for="Data_Nasc">Data de nascimento</label>
+        <input asp-for="Data_Nasc" />
+        <span asp-validation-for="Data_Nasc"></span>
+    </div>
+
+    <div>
+        <label asp-for="Genero">Gênero</label>
+        <select asp-for="Genero">
+            <option value="">Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+            <option value="O">Outro</option>
+        </select>
+
+        <span asp-validation-for="Genero"></span>
+    </div>
+
+    <div>
+        <label asp-for="Escolaridade">Escolaridade</label>
+        <select asp-for="Escolaridade">
+            <option value="">Selecione</option>
+            <option value="EF">Ensino Fundamental</option>
+            <option value="EM">Ensino Médio</option>
+            <option value="ES">Ensino Superior</option>
+            <option value="PG">Pós-Graduação</option>
+        </select>
+
+        <span asp-validation-for="Escolaridade"></span>
+    </div>
+
+    <div>
+        <label asp-for="Senha">Senha</label>
+        <input asp-for="Senha" />
+        <span asp-validation-for="Senha"></span>
+    </div>
+
+    <div>
+        <label asp-for="ConfirmarSenha">Confirmar senha</label>
+        <input asp-for="ConfirmarSenha" />
+        <span asp-validation-for="ConfirmarSenha"></span>
+    </div>
+    
+
+    <h3>Áreas de atuação</h3>
+    @if(areas != null)
+        {
+            foreach (var area in areas)
+            {
+                <div>
+                    <input type="checkbox"
+                        name="AreasSelecionadas"
+                        value="@area.ID" />
+
+                    <label>@area.Nome</label>
+                </div>
+            }
+        }
+
+    <h3>Tecnologias dominadas</h3>
+    @if (tecnologias != null)
+    {
+        foreach (var tecnologia in areas)
+        {
+            <div>
+                <input type="checkbox"
+                       name="TecnologiasSelecionadas"
+                       value="@tecnologia.ID" />
+
+                <label>@tecnologia.Nome</label>
+            </div>
+        }
+    }
+
+    <button type="submit">
+        Cadastrar
+    </button>
+
+</form>
